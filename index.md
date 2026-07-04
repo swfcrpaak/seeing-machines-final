@@ -57,6 +57,9 @@ The results section collects annotated screenshots and image panels, including:
 
 - **Successful retrievals**  
   - Queries where both routes find clear live animals outdoors or obvious vintage illustrations, with matching subject_status labels.
+  - “close‑up of a live flower outdoors”
+
+SigLIP is clearly locking onto “big pink flower shape + green background + outdoor lighting”, not on whether the flower is actually alive. That’s why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centred composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
 
 - **Disagreements between routes**  
   - Cases where SigLIP ranks live photos higher while the caption route prioritises illustrations, or vice versa.  
