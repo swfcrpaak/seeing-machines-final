@@ -1,17 +1,19 @@
-# Seeing Machines – Life, Stillness, and My Archive
 
-**[Min Jeong Park]**  
+
+# Seeing Machines – Life vs Stillness
+
+**Min Jeong Park**  
 CompSci for Designers 2 · TH Nürnberg
 
-![Teaser image](media/teaser.jpg)
+<img width="450" height="464" alt="IMG_8325" src="https://github.com/user-attachments/assets/d9e404ff-ae0a-4286-ba01-559984174cb7" />
 
-*A small multimodal companion explores a personal archive of plants and animals, asking a deceptively simple question: what does it mean, for a machine, to “see life” in pictures?*
+*A small multimodal companion explores a personal archive of fauna and flora, question: what does it mean, for a machine, to “see life” in pictures?*
 
 ---
 
 ## Abstract
 
-Human babies begin to sort the visual world into “living” and “non‑living” surprisingly early, a recent research found through brain‑imaging studies showing distinct responses to living beings versus inanimate objects by just a few months of age. This project turns that question toward a small vision–language system and a personal archive of about one hundred images of plants and animals, mixing live subjects and representation in the forms of: taxidermy, illustrations and paintings. The archive is explored through two routes: a Level 1 SigLIP search that embeds images directly, and a Level 2 caption‑based route where a VLM compresses each picture into a structured description, including a subject_status label such as “live_outdoor” or “flat_representation_art”, before text‑embedding and retrieval. By comparing where these compressed representations preserve or blur the line between life and stillness—especially in mis‑seeing cases where taxidermy or prints are treated as live—the project treats each retrieval path as a different form of “image compression as intelligence” and uses the machine’s mistakes as a way to look again at a familiar archive.
+Human babies begin to sort the visual world into “living” and “non‑living” surprisingly early, a recent research found. This AI assisted brain‑imaging study shows that infants can distinguish living beings versus inanimate objects by just a few months of age. This project turns that question toward a small vision–language system and a personal archive of about one hundred images of fauna and flora, mixing live subjects and representation in the forms of: taxidermy, illustrations and paintings. The archive is explored through two routes: a Level 1 SigLIP search that embeds images directly, and a Level 2 caption‑based route where a VLM compresses each picture into a structured description, before text‑embedding and retrieval. By comparing where these compressed representations preserve or blur the line between life and stillness—especially in mis‑seeing cases where taxidermy or prints are treated as live—the project treats each retrieval path as a different form of “image compression as intelligence” and uses the machine’s mistakes as a way to look again at a familiar archive.
 
 ---
 
@@ -53,13 +55,19 @@ Throughout, the project treats each route as a different way of compressing the 
 
 ## Results Gallery and Retrieval Atlas
 
-The results section collects annotated screenshots and image panels, including:
+All ten retrieval atlas queries and their embedding‑space reasoning, with screenshots in the appendix:
+
+- Queries like “bright, colorful illustration of an animal” show that SigLIP has a stable “illustration” cluster where imaginary creatures, fish, and cephalopods sit together.  
+- Queries like “natural landscape with no live animals” reveal that landscapes with geese and fantasy animals remain in the same neighbourhood as empty parks and ponds, suggesting that broad scene statistics (“landscape‑ness”) outweigh animal presence.  
+- Close‑up probes (“a close‑up photo of a live insect on a plant”, “a live animal photographed outdoors, not a drawing”) show that the embedding often collapses live subjects, taxidermy, printed images, and drawings into one “small creature + foliage” region.
+
+These entries support the claim that Level 1’s compression preserves colour, texture, and composition strongly, but only weakly distinguishes life vs representation.
+
 
 - **Successful retrievals**  
-  - Queries where both routes find clear live animals outdoors or obvious vintage illustrations, with matching subject_status labels.
-  - “close‑up of a live flower outdoors”
+  - Query No.8:  “close‑up of a live flower outdoors”
 
-SigLIP is clearly locking onto “big pink flower shape + green background + outdoor lighting”, not on whether the flower is actually alive. That’s why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centred composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
+SigLIP is clearly locking onto “big central figure + green background + outdoor lighting”, not on whether the flower is actually alive. That’s why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
 
 - **Disagreements between routes**  
   - Cases where SigLIP ranks live photos higher while the caption route prioritises illustrations, or vice versa.  
