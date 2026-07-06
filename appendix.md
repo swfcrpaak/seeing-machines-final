@@ -46,12 +46,12 @@ Each entry shows the query, settings, and a brief explanation grounded in embedd
 - Why: SigLIP focuses on “big pink flower + green background + outdoor lighting”, so printed flowers on buses and vending machines cluster with real flowers. Medium (print vs live plant) is weaker than colour and composition.
 
 ### 9. "a detailed drawing or engraving of a fish"
-![Lv1.1 screenshot](Lv1.9.1.png)
-![Lv1.1 screenshot](Lv1.9.2.png)
+![Lv1.1 screenshot](Lv1.10.png)
 - top_k: 8 · min_similarity: -0.05  
 - Why: Goldfish and cephalopod plates cluster together as “scientific illustration”, but fish‑like colours and shapes in photos can drift into the same neighbourhood, showing how composition and outline sometimes outweigh medium.
 
 ### 10. "a red flower on a green background" vs "a green flower on a red background"
-![Lv1.1 screenshot](Lv1.10.png)
+![Lv1.1 screenshot](Lv1.9.1.png)
+![Lv1.1 screenshot](Lv1.9.2.png)
 - top_k: 8 · min_similarity: -0.05
 - Why: Both queries return very similar sets, suggesting SigLIP treats “red + green + flower” as a bag of features. It doesn’t consistently bind the colour to the right object, which matches known compositional weaknesses of CLIP‑style encoders.
