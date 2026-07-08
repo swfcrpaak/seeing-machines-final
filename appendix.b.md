@@ -11,8 +11,7 @@ printed into the archivable PDF alongside it.
 ## 1. Chat-with-your-Archive Prototype
 
 Retrieval (caption-mediated) + grounded generation, with retrieved images shown alongside
-the answer. Built and run in `Seeing_Machines_Level2_Companion.ipynb`, Section 25
-(`ask_the_archive`).
+the answer. 
 
 ### Example 1
 
