@@ -53,7 +53,7 @@ Throughout, the project treats each route as a different way of compressing the 
 
 ---
 
-## Results Gallery and Retrieval Atlas
+## Lv.1 Results Gallery and Retrieval Atlas
 
 All ten retrieval atlas queries and their embedding‑space reasoning, with screenshots in the appendix:
 
@@ -67,26 +67,19 @@ These entries support the claim that Level 1’s compression preserves colour, t
 - **Successful retrievals**  
   - Query No.8:  “close‑up of a live flower outdoors”
 
-SigLIP is clearly locking onto “big central figure + green background + outdoor lighting”, not on whether the flower is actually alive. That’s why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
+    Embedding‑space reasoning:
+SigLIP is clearly locking onto “big central figure + green background + outdoor lighting”, not on whether the flower is actually  alive. That’s why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
 
-- **Disagreements between routes**  
-  - Cases where SigLIP ranks live photos higher while the caption route prioritises illustrations, or vice versa.  
-  - Examples where Gemma’s subject_status disagrees with the author’s judgement (e.g. taxidermy treated as “live_enclosure”).
+- Query No.2:  "bright, colorful illustration of an animal"
+
+    Embedding‑space reasoning: Here the model excels. Imaginary creatures, sea creature drawings, and fantasy scenes form a coherent
+"bright illustration" neighbourhood with strong colour, clean outlines, and flat backgrounds.
 
 - **Failure probes and binding tests**  
-  - Paired queries such as “a brown fish on a blue background” versus “a blue fish on a brown background”, or “live animal in front of plants” versus “plants in front of a live animal”.  
-  - Mixed results on “live versus illustrated” queries, where illustrations and photos cluster together.
-
   - Query No.1: “natural landscape with no live animals”
-    Settings: top_k = 8, min_similarity = -0.05
-
-    Observed results:
-    <img width="1243" height="878" alt="Screenshot 2026-07-04 at 1 22 29 PM" src="https://github.com/user-attachments/assets/da8e45b2-  bd11-4f37-a8de-b77025efd381" />
 
     Embedding‑space reasoning:
 This query is meant to test absences (no live animlas) over the "landscape" environment. Geese appears as the top image alongside pure landscapes. SigLIP finds a coherent “landscape” cluster—parks, trees, ponds—but animals and other creatures inside those scenes don’t push the images out of that region. Geese and painted animals stay near pure landscapes if the colours and scene layout match. Negation (“no live animals”) doesn’t move the text embedding very far from “natural landscape”, so the model still returns visually similar scenes even when they contain animals. This entry is a good example of granularity and negation issues: the model can find landscapes, but cannot prune away subjects that visually belong to the same cluster.
-
-
 
 ---
 
