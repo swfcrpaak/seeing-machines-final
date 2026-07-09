@@ -177,7 +177,7 @@ the addition of `evidence` as an accountability mechanism for the field that mat
 
 ### Level 1 vs Level 2: when does compression preserve the life/stillness line, and when does it blur it
 
-I ran both routes on the same five queries to see, directly, where the two forms of compression agree and where they part ways.
+I ran both routes on the same five queries to see, directly, where the two forms of compression agree and where they part ways. See Appendix B for images. 
 
 **"Which photos show living animals in motion?"** SigLIP's top five (similarities of 0.058 down to 0.043) and the caption route's top five (0.616 down to 0.555) share only two images. More telling than the overlap is what each route is actually keying on: the caption route is retrieving on an explicit `motion_state` judgment, so a genuinely blurred or mid-stride animal should surface reliably; SigLIP has no equivalent channel, so whatever visual correlate of "motion" it's using — blur, dynamic framing, maybe just outdoor-action-photo aesthetics in general — is much harder to name.
 
