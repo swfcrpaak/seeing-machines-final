@@ -68,4 +68,38 @@ Each entry shows the query, settings, and a brief explanation grounded in embedd
 |IMG\_7997\.HEIC|0\.5559999942779541|0\.5550000071525574|0\.6110000014305115|0\.6610000133514404|0\.6380000114440918|0\.621999979019165|1\.0|0\.656000018119812|
 |IMG\_4353\.JPG|0\.5789999961853027|0\.5740000009536743|0\.699999988079071|0\.6869999766349792|0\.7129999995231628|0\.628000020980835|0\.656000018119812|1\.0|
 
+------
 
+Appendix B: Level 2 Deliverables
+
+Side by side Comparison
+
+1. <img width="1427" height="941" alt="Lv2 c 1" src="https://github.com/user-attachments/assets/4e381695-b63f-495b-9c4d-b02df611fc9b" />
+
+2. <img width="1427" height="941" alt="Lv2 c 2" src="https://github.com/user-attachments/assets/433b50a9-33d0-4b71-8a10-d695e63dd962" />
+
+3. <img width="1427" height="941" alt="Lv2 c 3" src="https://github.com/user-attachments/assets/dfef8dd4-9877-453a-b5f8-d731ccd0035a" />
+
+4. <img width="1427" height="941" alt="Lv2 c 4" src="https://github.com/user-attachments/assets/5f89a4a8-1e59-45a9-a0de-c236dc5b41cc" />
+
+5. <img width="1427" height="941" alt="Lv2 c 5" src="https://github.com/user-attachments/assets/ba5e2c07-052f-442b-8253-79abe06b6823" />
+
+6. <img width="1427" height="941" alt="Lv2 c 6" src="https://github.com/user-attachments/assets/ffdce83d-f6e5-4b97-bba1-24f9238f782b" />
+
+7. <img width="1427" height="941" alt="Lv2 c 7" src="https://github.com/user-attachments/assets/3b4cf5fc-7add-4f57-976a-d408568c521e" />
+
+8. <img width="1427" height="941" alt="Lv2 c 8" src="https://github.com/user-attachments/assets/043e3460-b7a2-487f-bf85-65f7fe564334" />
+
+9. <img width="1427" height="941" alt="Lv2 c 9" src="https://github.com/user-attachments/assets/49895983-6748-44c8-ab21-c96e8c2c27d0" />
+
+10.<img width="1427" height="941" alt="Lv2 c 10" src="https://github.com/user-attachments/assets/bd0dd614-da39-4819-b33f-6952794f95ad" />
+
+11. <img width="1427" height="941" alt="Lv2 c 11" src="https://github.com/user-attachments/assets/740b3470-72da-4a1b-8b05-f54cd3060ad9" />
+
+12. <img width="1409" height="872" alt="Lv2 c 13" src="https://github.com/user-attachments/assets/3f04e307-726c-42c9-b4ca-5d6ab7a0e48a" />
+
+13. <img width="1409" height="872" alt="Lv2 c 12" src="https://github.com/user-attachments/assets/2e9057b5-2ed4-4fc8-8955-d370f1738106" />
+
+14. <img width="1409" height="872" alt="Lv2 c 14" src="https://github.com/user-attachments/assets/3fa143cc-fd09-41db-8a75-d7e5c677ef93" />
+
+15. <img width="1427" height="941" alt="Lv2 c 15" src="https://github.com/user-attachments/assets/5e43fdb6-f7b7-4377-aae6-ba87636e20cd" />
