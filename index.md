@@ -248,3 +248,9 @@ No AI tool was used to generate core research content, design decisions, or orig
 
 - O’Doherty, C., Dineen, Á.T., Truzzi, A. et al. Infants have rich visual categories in ventrotemporal cortex at 2 months of age. Nat Neurosci 29, 693–702 (2026). https://doi.org/10.1038/s41593-025-02187-8
 - Public‑domain image sources (botanical plates, mollusc and cephalopod illustrations, postcards, medieval manuscript details), listed in `LICENSES.md`.
+
+----
+## More information
+
+- [Appendix](appendix.md)
+- [Licenses](licenses.txt)
