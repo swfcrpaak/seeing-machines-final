@@ -72,7 +72,7 @@ These entries support the claim that Level 1's compression preserves colour, tex
     Embedding‑space reasoning: This query is meant to test absences (no live animals) over the "landscape" environment. Geese     appears as the top image alongside pure landscapes. SigLIP finds a coherent "landscape" cluster—parks, trees, ponds—but animals and other creatures inside those scenes don't push the images out of that region. Geese and painted animals stay near pure landscapes if the colours and scene layout match. Negation ("no live animals") doesn't move the text embedding very far from "natural landscape", so the model still returns visually similar scenes even when they contain animals. This entry is a good example of granularity and negation issues: the model can find landscapes, but cannot prune away subjects that visually belong to the same cluster.
     
     UMAP Analysis
-    <img width="1021" height="876" alt="Unknown-29" src="https://github.com/user-attachments/assets/d136c797-a56c-4090-8f7d-622341a2fff0" />
+    <img height="600" alt="Unknown-29" src="https://github.com/user-attachments/assets/d136c797-a56c-4090-8f7d-622341a2fff0" />
 
     Observations from the Visualization:
 
@@ -139,38 +139,38 @@ the addition of `evidence` as an accountability mechanism for the field that mat
 **Motion**
 
   "a still, motionless pose that could be mistaken for taxidermy"
-<img width="1427" height="941" alt="Lv2 c 2" src="https://github.com/user-attachments/assets/51d3d8df-dafb-429d-958d-a63636fbc0e8" />
+<img alt="Lv2 c 2" src="https://github.com/user-attachments/assets/51d3d8df-dafb-429d-958d-a63636fbc0e8" />
 
   - SigLIP wins, while Caption route focus on bringing images closer to taxidermy, can't understand the query as well as CLIP. Motion cue alone can't predict correct status, and "still" language biases the model toward false taxidermy calls even for a sleeping live animal.
 
 **Lighting**
 
   "a subject under flat, even indoor artificial lighting"
-<img width="1427" height="941" alt="Lv2 c 6" src="https://github.com/user-attachments/assets/8cf66196-73ce-4ab1-823b-0644c2c76012" />
+<img  alt="Lv2 c 6" src="https://github.com/user-attachments/assets/8cf66196-73ce-4ab1-823b-0644c2c76012" />
 
   - Neither routes suggest that flat even lighting skewing for staged/displayed settings. Lighting isn't actually carrying status signal, just retrieval signal. Subject status are varying from inanimate object to living plant. 
 
 **Composition**
 
   "a macro close-up of a live subject in its natural environment"
-<img width="1427" height="941" alt="Lv2 c 7" src="https://github.com/user-attachments/assets/603c4621-43a9-43e6-8872-c09096c3c3ad" />
+<img alt="Lv2 c 7" src="https://github.com/user-attachments/assets/603c4621-43a9-43e6-8872-c09096c3c3ad" />
 
   -Mixed result for both routes. Caption route concentrates more on living subject in its natural environment than the composition (close-up). CLIP brings close-up but not all living subjects. 
 
 **Color**
 
   "a mostly green, leafy scene" 
-<img width="1427" height="941" alt="Lv2 c 9" src="https://github.com/user-attachments/assets/b380a936-5c3a-4ec0-899c-b61975be46da" />
+<img alt="Lv2 c 9" src="https://github.com/user-attachments/assets/b380a936-5c3a-4ec0-899c-b61975be46da" />
 
   -SigLIP retrieved more "greeness". Caption route retrieval: color starts correlating with status, worth reconsidering dropping palette in schema. 
 
 **The adversarial pair**
 
   "a live animal that could be mistaken for taxidermy because it's holding still"
-<img width="1427" height="941" alt="Lv2 c 11" src="https://github.com/user-attachments/assets/5deac64b-625c-4253-94f0-9e72f3058af8" />
+<img  alt="Lv2 c 11" src="https://github.com/user-attachments/assets/5deac64b-625c-4253-94f0-9e72f3058af8" />
 
   "a taxidermy mount or illustration that could be mistaken for a living animal"
-<img width="1427" height="941" alt="Lv2 c 10" src="https://github.com/user-attachments/assets/d161fb8e-e555-4871-94c7-c89499d5cf1e" />
+<img  alt="Lv2 c 10" src="https://github.com/user-attachments/assets/d161fb8e-e555-4871-94c7-c89499d5cf1e" />
 
   - Caption route wins, CLIP retrieved illustrations of imaginary beings. Clearly not enough to tell what is actually "a living animal." 
 
