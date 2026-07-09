@@ -22,18 +22,16 @@ I am interested in how very small systems, human or machine, begin to carve up t
 
 The corpus consists of 99 images:
 
-- Original photographs of plants and animals taken by the author in temperate northern hemisphere climate and warm southern hemisphere climate.
-- Images of animals in enclosures, aquariums, and terrariums
-- Taxidermy specimens and display cases (where allowed by rights)
+- Original photographs of plants and animals taken by the author in different climate and environments
 - Public‑domain illustrations and paintings of animals and plants
 
-All public images in the GitHub repository come from sources that mark the underlying works as public domain or CC0, documented in a `LICENSES.md` file. Private, rights‑sensitive images remain only in the local Colab corpus.
+All public images in the GitHub repository come from sources that mark the underlying works as public domain or CC0, documented in a `LICENSES.txt` file. Private, rights‑sensitive images remain only in the local Colab corpus.
 
 ---
 
 ## Approach
 
-The system closely follows the course's Level 1 and Level 2 pattern. [file:2]
+<img width="800" alt="seeing_machines_pipeline" src="https://github.com/user-attachments/assets/43aafe8c-ae6f-42c4-a62a-dbd2f15a3cbd" /> Diagram generated with AI
 
 - **Level 1 – The Finder (SigLIP route)**
   - SigLIP embeds all images once.
@@ -42,8 +40,8 @@ The system closely follows the course's Level 1 and Level 2 pattern. [file:2]
   - A retrieval atlas logs at least ten queries (e.g. "live animal in nature", "vintage illustration of a plant") with embedding‑space reasoning: why this query returned these images.
 
 - **Level 2 – The Companion (caption route)**
-  - Gemma 3 4B (quantized) generates a structured JSON description for each image. The schema went through a real revision, not a single draft — see *From subject_status to evidence* below for why.
-  - The current schema asks for: `subject`, `subject_status` (living outdoors / living in enclosure / dead specimen or taxidermy / flat representation / food or processed material / unclear), `motion_state` (in motion / active but still / resting / not applicable), `evidence` (the specific visual cue behind both status judgments), `lighting`, `composition`, and `surface_texture`. [file:2]
+  - Gemma 3 4B (quantized) generates a structured JSON description for each image.
+  - Testing and redesigning schema.
   - Captions are flattened to text and embedded with `all-MiniLM-L6-v2`.
   - A FAISS index powers caption‑based retrieval.
   - A language model (Gemma in text‑only mode) generates grounded answers from the retrieved captions, with the source images displayed alongside the answer.
@@ -64,18 +62,19 @@ All ten retrieval atlas queries and their embedding‑space reasoning, with scre
 These entries support the claim that Level 1's compression preserves colour, texture, and composition strongly, but only weakly distinguishes life vs representation.
 
 - **Successful retrievals**
-  - Query No.8: "close‑up of a live flower outdoors"
-
-    Embedding‑space reasoning: SigLIP is clearly locking onto "big central figure + green background + outdoor lighting", not on whether the flower is actually alive. That's why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
-
   - Query No.2: "bright, colorful illustration of an animal"
-
+    <img src="Lv1.2.png" alt="Screenshot" width="800">
     Embedding‑space reasoning: Here the model excels. Imaginary creatures, sea creature drawings, and fantasy scenes form a coherent "bright illustration" neighbourhood with strong colour, clean outlines, and flat backgrounds.
 
 - **Failure probes and binding tests**
   - Query No.1: "natural landscape with no live animals"
-
+    <img src="Lv1.1.png" alt="Screenshot" width="800">  
     Embedding‑space reasoning: This query is meant to test absences (no live animals) over the "landscape" environment. Geese appears as the top image alongside pure landscapes. SigLIP finds a coherent "landscape" cluster—parks, trees, ponds—but animals and other creatures inside those scenes don't push the images out of that region. Geese and painted animals stay near pure landscapes if the colours and scene layout match. Negation ("no live animals") doesn't move the text embedding very far from "natural landscape", so the model still returns visually similar scenes even when they contain animals. This entry is a good example of granularity and negation issues: the model can find landscapes, but cannot prune away subjects that visually belong to the same cluster.
+
+- **Mixed retrievals**
+  - Query No.8: "close‑up of a live flower outdoors"
+    <img src="Lv1.8.png" alt="Screenshot" width="800">
+    Embedding‑space reasoning: SigLIP is clearly locking onto "big central figure + green background + outdoor lighting", not on whether the flower is actually alive. That's why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
 
 This is really where the whole project's question starts: if colour and layout outweigh liveness in a joint embedding, does swapping in a model that has to *say* what it sees, in words, do any better?
 
@@ -137,9 +136,22 @@ Reflecting on the results, the project suggests that "seeing life" in images is 
 
 ---
 
+## AI Use Statement
+
+I acknowledge the use of the following AI tools in the preparation of this documentation:
+
+- **Perplexity AI**  – used to generate organization list and refine explanatory text for the documentation.  The output was reviewed, edited, and integrated manually; no content was used verbatim without adaptation.
+
+- **Claude AI**  –  used as a coding and writing assistant: debugging notebook errors, reviewing and revising code structure, iterating on the description schema through discussion, drafting and editing this documentation page, and generating the pipeline diagram. All corpus curation, schema design decisions, query selection, retrieval and mis-seeing analysis, and final interpretations are my own. Where documentation text was AI-drafted, it was written from my own design reasoning and reviewed and edited by me before submission.
+  
+- **GitHub Copilot** (https://github.com/features/copilot) – used within the code editor to assist with writing and checking Markdown syntax and small code snippets. All suggestions were accepted, modified, or rejected at my discretion.
+
+No AI tool was used to generate core research content, design decisions, or original analysis. All substantive content, structure, and conclusions in this documentation are my own work.
+
+--
+
 ## Sources and References
 
-- Course materials: CompSci for Designers 2 – Seeing Machines notebooks and brief. [file:1][file:2]
 - Infant research on object categorisation and living vs non‑living distinctions. [web:211]
 - Model cards and documentation for SigLIP, Gemma 3 4B, and `all-MiniLM-L6-v2`.
 - Public‑domain image sources (botanical plates, mollusc and cephalopod illustrations, postcards, medieval manuscript details), listed in `LICENSES.md`.
