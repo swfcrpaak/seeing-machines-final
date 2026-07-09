@@ -1,4 +1,4 @@
-# Seeing Machines – Life vs Stillness
+<img width="1427" height="941" alt="Screenshot 2026-07-09 at 6 27 32 PM" src="https://github.com/user-attachments/assets/9f453981-e460-4097-bb6f-87fa308c2ceb" /># Seeing Machines – Life vs Stillness
 
 **Min Jeong Park**  
 CompSci for Designers 2 · TH Nürnberg
@@ -50,7 +50,7 @@ Throughout, the project treats each route as a different way of compressing the 
 
 ---
 
-## Lv.1 Results Gallery and Retrieval Atlas
+## Lv.1 The Finder and Retrieval Atlas
 
 All ten retrieval atlas queries and their embedding‑space reasoning, with screenshots in the appendix:
 
@@ -63,13 +63,15 @@ These entries support the claim that Level 1's compression preserves colour, tex
 - **Successful retrievals**
   - Query No.2: "bright, colorful illustration of an animal"
     <img src="Lv1.2.png" alt="Screenshot" width="800">
-    Embedding‑space reasoning: Here the model excels. Imaginary creatures, sea creature drawings, and fantasy scenes form a coherent "bright illustration" neighbourhood with strong colour, clean outlines, and flat backgrounds.
+    Embedding‑space reasoning: Here the model excels. Imaginary creatures, sea creature drawings, and fantasy scenes form a coherent     "bright illustration" neighbourhood with strong colour, clean outlines, and flat backgrounds.
 
 - **Failure probes and binding tests**
   - Query No.1: "natural landscape with no live animals"
     <img src="Lv1.1.png" alt="Screenshot" width="800">
 
-    Embedding‑space reasoning: This query is meant to test absences (no live animals) over the "landscape" environment. Geese appears as the top image alongside pure landscapes. SigLIP finds a coherent "landscape" cluster—parks, trees, ponds—but animals and other creatures inside those scenes don't push the images out of that region. Geese and painted animals stay near pure landscapes if the colours and scene layout match. Negation ("no live animals") doesn't move the text embedding very far from "natural landscape", so the model still returns visually similar scenes even when they contain animals. This entry is a good example of granularity and negation issues: the model can find landscapes, but cannot prune away subjects that visually belong to the same cluster.
+    Embedding‑space reasoning: This query is meant to test absences (no live animals) over the "landscape" environment. Geese     appears as the top image alongside pure landscapes. SigLIP finds a coherent "landscape" cluster—parks, trees, ponds—but animals and other creatures inside those scenes don't push the images out of that region. Geese and painted animals stay near pure landscapes if the colours and scene layout match. Negation ("no live animals") doesn't move the text embedding very far from "natural landscape", so the model still returns visually similar scenes even when they contain animals. This entry is a good example of granularity and negation issues: the model can find landscapes, but cannot prune away subjects that visually belong to the same cluster.  
+
+
 
     UMAP Analysis
     <img width="1021" height="876" alt="Unknown-29" src="https://github.com/user-attachments/assets/d136c797-a56c-4090-8f7d-622341a2fff0" />
@@ -78,34 +80,71 @@ These entries support the claim that Level 1's compression preserves colour, tex
 
 -Clustering: In the UMAP plot, you'll see that the 'geese' image (IMG_2611.HEIC) is clustered very closely to images of landscapes. This suggests that the model is prioritizing the 'natural landscape' part of query over the 'no live animals' negative constraint.
 -Texture & Composition: SigLIP often focuses on global features. The visual texture of birds grass often mimics the patterns found in purely natural textures (like rocks or dappled light), causing the model to see them as high-quality 'landscape' matches.
--Similarity Matrix: If you look at the Table A1, you'll notice high pairwise similarity (e.g., 0.707, 0.716) between the geese image (IMG_2611.HEIC) and other landscape photos. This confirms that in the model's internal 'map,' these images are nearly indistinguishable from 'natural landscapes.'
-
-
+-Similarity Matrix: As shown in Table A1 (Appendix A), several pairwise similarity values between the geese image (IMG_2611.HEIC) and other landscape photos are notably high (e.g., 0.707, 0.716). This indicates that, in the model’s internal representational space, these images are nearly indistinguishable from “natural landscapes.”
 
 - **Mixed retrievals**
   - Query No.8: "close‑up of a live flower outdoors"
     <img src="Lv1.8.png" alt="Screenshot" width="800">
-    Embedding‑space reasoning: SigLIP is clearly locking onto "big central figure + green background + outdoor lighting", not on whether the flower is actually alive. That's why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
 
-This is really where the whole project's question starts: if colour and layout outweigh liveness in a joint embedding, does swapping in a model that has to *say* what it sees, in words, do any better?
+    UMAP Analysis
+      <img width="1983" height="955" alt="Unknown-31" src="https://github.com/user-attachments/assets/fe7f68bb-3bbf-458f-a232-98a22aeb9fd8" />
+
+     Embedding‑space reasoning: SigLIP is clearly locking onto "big central figure + green background + outdoor lighting", not on whether the flower is actually alive. That's why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
+    
+Moving on to Level 2...
+"*This is really where the project’s question starts: if, in this vision-only embedding, colour and layout outweigh liveness, what changes when I swap in a model that has to put what it sees into words? Does asking the model to speak make liveness matter more—or does it just translate the same visual bias into language?*"
 
 ---
 
-## Lv.2 Results: The Companion
+## Lv.2 The Companion
 
-### From subject_status to evidence: redesigning the schema
+### Schema evolution
 
-My first Level 2 schema treated "alive or not" as a single closed category — five original fields: `subject`, `habitat_or_context`, `notable_objects`, `activity`, and a seven-way `subject_status` (`live_outdoor`, `live_enclosure`, `dead_specimen_or_taxidermy`, `flat_representation_art`, `flat_representation_photo`, `food_or_processed`, `unclear`). It worked, in the sense that Gemma reliably produced a label. But a label on its own is exactly the kind of thing the Level 1 atlas already warned me about: SigLIP could confidently place a printed flower and a real one in the same neighbourhood without ever being wrong about anything it was actually asked to measure. A caption schema that only asks for a conclusion has the same failure mode — the model can assert `dead_specimen_or_taxidermy` with no more grounding than SigLIP's colour-and-layout clustering had.
+The schema went through a few iterations before settling. The first version treated
+"is this alive, dead, or a representation" as a single closed-category field with no
+mechanism to verify the model's own judgment, and had no way to represent purely visual
+properties (color, lighting, texture) at all. The final version adds fields aimed 
+specifically at making the live-vs-representation judgment both more accurate and independently checkable.
 
-So the redesign is built around one change: `subject_status` is no longer allowed to stand alone. It's paired with an `evidence` field that has to name the specific visual cue behind the judgment — a glass-case reflection, a rigid mounted pose, visible brushstrokes, natural depth-of-field blur on fur. If the model says "taxidermy," it now has to say *why*, in terms I can actually check against the photo. That turns a bare disagreement ("the model got this wrong") into something closer to a real mis-seeing case: sometimes the label is right but the cited evidence isn't there at all, which tells me much more about how the model is seeing than a wrong label by itself ever could.
+| Original field | Final field | What changed and why |
+|---|---|---|
+| `subject` | `subject` | Unchanged. |
+| `subject_status` (7 closed categories: `live_outdoor`, `live_enclosure`, `dead_specimen_or_taxidermy`, `flat_representation_art`, `flat_representation_photo`, `food_or_processed`, `unclear`) | `subject_status` (5 categories, prose form) | Collapsed `flat_representation_art` and `flat_representation_photo` into one `flat representation` category. For this project's actual question — alive vs. represented — the *art-vs-photo* distinction inside "representation" doesn't matter; keeping it split cost the model a discrimination it didn't need to make and added a fourth way to be wrong. |
+| — | `motion_state` (new) | The original schema could say an animal was alive, but had no field for whether it was *moving* — the more specific question the project actually cares about. Note the honest limitation stated in the notebook: a still photo only ever gives indirect motion cues (blur, posture, ground contact), never motion itself. |
+| — | `evidence` (new; briefly tried as `status_evidence`, then broadened) | The single biggest change. The original `subject_status` was an unverifiable assertion — the model could say "taxidermy" with no way to check *why*. `evidence` forces the model to name the specific visual cue behind both `subject_status` and `motion_state` (a reflection, a pose, a blur, a brushstroke), which turns a bare wrong label into an inspectable, citable mis-seeing case: sometimes the conclusion is right but the cited evidence is fabricated, which is a more precise failure to document than "wrong." |
+| `notable_objects` | *(dropped)* | Rarely distinguished images in ways that mattered for retrieval; mostly duplicated information already implicit in `subject` and `habitat_or_context`. |
+| `activity` | *(dropped)* | Superseded by `motion_state`, which asks the more specific and more relevant question for this project. |
+| — | `lighting`, `composition`, `surface_texture` (new) | Added after noticing, in the Level 1 vs. Level 2 comparison, that purely visual queries (texture, framing, light quality) were unanswerable by the caption route because the schema had no field that could hold that information — CLIP/SigLIP could "see" it, captions structurally couldn't. `surface_texture` in particular does double duty for the status question: organic texture vs. flat matte paper vs. canvas weave is itself status evidence. |
+| — | `palette` (added, then dropped) | Briefly added to close the same visual-query gap, then removed: color doesn't discriminate alive vs. represented (a photo and a painting can share a palette), so it wasn't earning its place in an 8-field budget aimed at that specific question. Dropping it also reopens a genuine, honest caption-route blind spot for the Level 1 comparison — a "green, leafy scene" query is a real test of what CLIP can do that captions structurally cannot. |
+| `habitat_or_context` | `habitat_or_context` | Unchanged. |
 
-Two fields — `notable_objects` and `activity` — were tried in the first version and dropped. Both described the image in general terms without bearing on the life/stillness question specifically. In their place I added `motion_state`, because "alive" and "moving" turned out to be two different questions the original schema quietly conflated — a sleeping animal and a taxidermy mount can both read as "still," for very different reasons, and the schema needs to be able to tell those apart. I also tried, then dropped, a `palette` field: colour doesn't actually discriminate alive from represented (a photograph and a painting can share a palette), so it wasn't earning its place against fields that do. `lighting`, `composition`, and `surface_texture` stayed, because the Level 1 atlas had already shown that colour, texture, and composition were exactly what SigLIP *was* picking up on — giving the caption route the same visual vocabulary lets me compare the two routes on genuinely equal footing instead of comparing a visual model against a schema that can't talk about visual things at all.
+Net effect: 5 fields → 8 fields, but reallocated rather than simply expanded — two
+fields that weren't serving the research question were traded for three that are, plus
+the addition of `evidence` as an accountability mechanism for the field that matters most.
+
+### Final schema
+
+| Field | Description |
+|---|---|
+| `subject` | The main subject or focal point, a few words |
+| `subject_status` | One of: living animal/plant photographed outdoors / living animal/plant in enclosure or tank / dead specimen or taxidermy / flat representation (illustration, painting, or photo of a photo) / food or processed biological material / unclear |
+| `motion_state` | Clear or implied motion / active but still / resting or static / not applicable |
+| `evidence` | The specific visual cues that justify both `subject_status` and `motion_state` |
+| `lighting` | Natural or artificial; quality and direction |
+| `composition` | Framing and distance (macro, medium shot, wide establishing) |
+| `surface_texture` | Physical surface quality visible in the image (organic texture, matte paper, glossy print, glass reflection, canvas weave) |
+| `habitat_or_context` | The environment or setting |
+
+
 
 ### Chat with the Archive
 
 The Companion interface takes a question, retrieves the most relevant captions through the FAISS index, and asks Gemma to answer using only those retrieved descriptions — with the source images shown alongside the answer, so the grounding is checkable rather than asserted. Retrieval and generation are deliberately separated: what comes back as "relevant" is entirely a property of the caption embeddings, and what gets said about it is a second, separate step that can be wrong even when retrieval was right.
 
 *[Example query/answer pair with screenshot goes here — e.g. "which photo is most likely to be mistaken for a live animal but actually isn't, and why?" is the strongest single demo, since it forces the model to use `subject_status` and `evidence` together rather than just retrieve on subject.]*
+
+
+
 
 ### Level 1 vs Level 2: when does compression preserve the life/stillness line, and when does it blur it
 
@@ -121,11 +160,61 @@ I ran both routes on the same five queries to see, directly, where the two forms
 
 Taken together: caption-mediated retrieval wins decisively on the one query that most directly targets the life/representation distinction (flat representations), which is the result I trust most, because it's exactly the distinction the schema was rebuilt to make explicit. On the more purely visual queries (lighting, texture), the routes diverge in ways that are harder to attribute cleanly to "better" versus "worse" without also accounting for how differently SigLIP and a sigmoid-trained sentence embedder produce their raw numbers in the first place.
 
-### Level 2 Mis-Seeing Dossier
+### Side-by-side Comparison on Visual Cues
 
-Documented cases where Gemma's caption diverges from what I can see with my own eyes, organised by failure type rather than by image:
+**Motion**
+
+"a still, motionless pose that could be mistaken for taxidermy"
+<img width="1427" height="941" alt="Lv2 c 2" src="https://github.com/user-attachments/assets/51d3d8df-dafb-429d-958d-a63636fbc0e8" />
+
+- SigLIP wins, while Caption route focus on bringing images closer to taxidermy, can't understand the query as well as CLIP. Motion cue alone can't predict correct status, and "still" language biases the model toward false taxidermy calls even for a sleeping live animal.
+
+**Lighting**
+
+"a subject under flat, even indoor artificial lighting"
+<img width="1427" height="941" alt="Lv2 c 6" src="https://github.com/user-attachments/assets/8cf66196-73ce-4ab1-823b-0644c2c76012" />
+
+
+- Neither routes suggest that flat even lighting skewing for staged/displayed settings. Lighting isn't actually carrying status signal, just retrieval signal. Subject status are varying from inanimate object to living plant. 
+
+**Composition**
+
+"a macro close-up of a live subject in its natural environment"
+<img width="1427" height="941" alt="Lv2 c 7" src="https://github.com/user-attachments/assets/603c4621-43a9-43e6-8872-c09096c3c3ad" />
+
+-Mixed result for both routes. Caption route concentrates more on living subject in its natural environment than the composition (close-up). CLIP brings close-up but not all living subjects. 
+
+**Color**
+
+"a mostly green, leafy scene" 
+<img width="1427" height="941" alt="Lv2 c 9" src="https://github.com/user-attachments/assets/b380a936-5c3a-4ec0-899c-b61975be46da" />
+
+-SigLIP retrieved more "greeness". Caption route retrieval: color starts correlating with status, worth reconsidering dropping palette in schema. 
+
+**The adversarial pair**
+
+
+"a live animal that could be mistaken for taxidermy because it's holding still"
+<img width="1427" height="941" alt="Lv2 c 11" src="https://github.com/user-attachments/assets/5deac64b-625c-4253-94f0-9e72f3058af8" />
+
+"a taxidermy mount or illustration that could be mistaken for a living animal"
+<img width="1427" height="941" alt="Lv2 c 10" src="https://github.com/user-attachments/assets/d161fb8e-e555-4871-94c7-c89499d5cf1e" />
+
+- Caption route wins, CLIP retrieved illustrations of imaginary beings. Clearly not enough to tell what is actually "a living animal." 
+
+
+
+### Mis-Seeing Dossier
 
 - **Skewed description (subject_status).** Taxidermy animals described and retrieved as living creatures — the case the redesigned schema exists to catch. Under the old schema this was just a wrong label; under the new one, I can check whether the model's `evidence` field cites something real (a pose, a texture) or something fabricated, which is the actual diagnostic question.
+
+- "image_name": "IMG_5888.HEIC",
+   Old schema had "subject": "two felted rabbits indoors" as classified with "subject_status":"living animal or plant photographed outdoors'".
+
+  
+
+    
+
 - **Hallucination / context confusion.** Goldfish and cephalopod plates treated as though they were photographs taken inside an aquarium — the model appears to be inferring a plausible setting from subject matter alone, rather than reading the actual surface of the image (paper, printed line work) that would rule an aquarium photograph out.
 - **Hallucination.** Postcards of giant fruit mistaken for natural landscapes or realistic food photography — a case where scale and genre cues (postcard framing, exaggerated proportion) get overridden by more generic scene recognition.
 - **Systematic skew.** Across several images, the caption route collapses paintings, prints, and live photographs into similar `subject_status` labels — the general failure mode that motivated the whole schema redesign, rather than a single isolated case.
