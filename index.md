@@ -85,7 +85,7 @@ These entries support the claim that Level 1's compression preserves colour, tex
     <img src="Lv1.8.png" alt="Screenshot" width="800">
 
     UMAP Analysis
-      <img width="1983" height="955" alt="Unknown-31" src="https://github.com/user-attachments/assets/fe7f68bb-3bbf-458f-a232-98a22aeb9fd8" />
+      <img alt="Unknown-31" src="https://github.com/user-attachments/assets/fe7f68bb-3bbf-458f-a232-98a22aeb9fd8" />
 
      Embedding‑space reasoning: SigLIP is clearly locking onto "big central figure + green background + outdoor lighting", not on whether the flower is actually alive. That's why it twice pulls printed flowers on a bus and a picture with a glass jar with nature in the background: visually they share saturated colours, petal/stem shapes, and centered composition. Medium (print vs real plant) seems much weaker in the embedding than basic colour and layout.
     
