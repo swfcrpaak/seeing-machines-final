@@ -1,4 +1,3 @@
-
 # Seeing Machines – Life vs Stillness
 
 **Min Jeong Park**  
@@ -68,8 +67,20 @@ These entries support the claim that Level 1's compression preserves colour, tex
 
 - **Failure probes and binding tests**
   - Query No.1: "natural landscape with no live animals"
-    <img src="Lv1.1.png" alt="Screenshot" width="800">  
+    <img src="Lv1.1.png" alt="Screenshot" width="800">
+
     Embedding‑space reasoning: This query is meant to test absences (no live animals) over the "landscape" environment. Geese appears as the top image alongside pure landscapes. SigLIP finds a coherent "landscape" cluster—parks, trees, ponds—but animals and other creatures inside those scenes don't push the images out of that region. Geese and painted animals stay near pure landscapes if the colours and scene layout match. Negation ("no live animals") doesn't move the text embedding very far from "natural landscape", so the model still returns visually similar scenes even when they contain animals. This entry is a good example of granularity and negation issues: the model can find landscapes, but cannot prune away subjects that visually belong to the same cluster.
+
+    UMAP Analysis
+    <img width="1021" height="876" alt="Unknown-29" src="https://github.com/user-attachments/assets/d136c797-a56c-4090-8f7d-622341a2fff0" />
+
+    Observations from the Visualization:
+
+-Clustering: In the UMAP plot, you'll see that the 'geese' image (IMG_2611.HEIC) is clustered very closely to images of landscapes. This suggests that the model is prioritizing the 'natural landscape' part of query over the 'no live animals' negative constraint.
+-Texture & Composition: SigLIP often focuses on global features. The visual texture of birds grass often mimics the patterns found in purely natural textures (like rocks or dappled light), causing the model to see them as high-quality 'landscape' matches.
+-Similarity Matrix: If you look at the Table A1, you'll notice high pairwise similarity (e.g., 0.707, 0.716) between the geese image (IMG_2611.HEIC) and other landscape photos. This confirms that in the model's internal 'map,' these images are nearly indistinguishable from 'natural landscapes.'
+
+
 
 - **Mixed retrievals**
   - Query No.8: "close‑up of a live flower outdoors"
