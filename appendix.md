@@ -1,4 +1,9 @@
-## Appendix 
+---
+layout: default
+title: "Appendix"
+---
+
+# Appendix
 
 Appendix A: Retrieval Atlas — Level 1 
 
