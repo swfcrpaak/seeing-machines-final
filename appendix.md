@@ -80,46 +80,46 @@ This appendix documents all ten Level 1 queries used in the retrieval atlas. Eac
 The figures below correspond to the Level 2 comparison discussion in `index.md`. Where the main documentation refers to motion, lighting, composition, colour, the adversarial pair, and the Level 1-vs-Level 2 comparison queries, it is referring to these numbered screenshots.
 
 ### Figure B1. Level 2 comparison screenshot 1
-<img width="1427" height="941" alt="Lv2 c 1" src="https://github.com/user-attachments/assets/4e381695-b63f-495b-9c4d-b02df611fc9b" />
+<img alt="Lv2 c 1" src="https://github.com/user-attachments/assets/4e381695-b63f-495b-9c4d-b02df611fc9b" />
 
 ### Figure B2. Level 2 comparison screenshot 2
-<img width="1427" height="941" alt="Lv2 c 2" src="https://github.com/user-attachments/assets/433b50a9-33d0-4b71-8a10-d695e63dd962" />
+<img alt="Lv2 c 2" src="https://github.com/user-attachments/assets/433b50a9-33d0-4b71-8a10-d695e63dd962" />
 
 ### Figure B3. Level 2 comparison screenshot 3
-<img width="1427" height="941" alt="Lv2 c 3" src="https://github.com/user-attachments/assets/dfef8dd4-9877-453a-b5f8-d731ccd0035a" />
+<img  alt="Lv2 c 3" src="https://github.com/user-attachments/assets/dfef8dd4-9877-453a-b5f8-d731ccd0035a" />
 
 ### Figure B4. Level 2 comparison screenshot 4
-<img width="1427" height="941" alt="Lv2 c 4" src="https://github.com/user-attachments/assets/5f89a4a8-1e59-45a9-a0de-c236dc5b41cc" />
+<img alt="Lv2 c 4" src="https://github.com/user-attachments/assets/5f89a4a8-1e59-45a9-a0de-c236dc5b41cc" />
 
 ### Figure B5. Level 2 comparison screenshot 5
-<img width="1427" height="941" alt="Lv2 c 5" src="https://github.com/user-attachments/assets/ba5e2c07-052f-442b-8253-79abe06b6823" />
+<img alt="Lv2 c 5" src="https://github.com/user-attachments/assets/ba5e2c07-052f-442b-8253-79abe06b6823" />
 
 ### Figure B6. Level 2 comparison screenshot 6
-<img width="1427" height="941" alt="Lv2 c 6" src="https://github.com/user-attachments/assets/ffdce83d-f6e5-4b97-bba1-24f9238f782b" />
+<img alt="Lv2 c 6" src="https://github.com/user-attachments/assets/ffdce83d-f6e5-4b97-bba1-24f9238f782b" />
 
 ### Figure B7. Level 2 comparison screenshot 7
-<img width="1427" height="941" alt="Lv2 c 7" src="https://github.com/user-attachments/assets/3b4cf5fc-7add-4f57-976a-d408568c521e" />
+<img alt="Lv2 c 7" src="https://github.com/user-attachments/assets/3b4cf5fc-7add-4f57-976a-d408568c521e" />
 
 ### Figure B8. Level 2 comparison screenshot 8
-<img width="1427" height="941" alt="Lv2 c 8" src="https://github.com/user-attachments/assets/043e3460-b7a2-487f-bf85-65f7fe564334" />
+<img alt="Lv2 c 8" src="https://github.com/user-attachments/assets/043e3460-b7a2-487f-bf85-65f7fe564334" />
 
 ### Figure B9. Level 2 comparison screenshot 9
-<img width="1427" height="941" alt="Lv2 c 9" src="https://github.com/user-attachments/assets/49895983-6748-44c8-ab21-c96e8c2c27d0" />
+<img alt="Lv2 c 9" src="https://github.com/user-attachments/assets/49895983-6748-44c8-ab21-c96e8c2c27d0" />
 
 ### Figure B10. Level 2 comparison screenshot 10
-<img width="1427" height="941" alt="Lv2 c 10" src="https://github.com/user-attachments/assets/bd0dd614-da39-4819-b33f-6952794f95ad" />
+<img alt="Lv2 c 10" src="https://github.com/user-attachments/assets/bd0dd614-da39-4819-b33f-6952794f95ad" />
 
 ### Figure B11. Level 2 comparison screenshot 11
-<img width="1427" height="941" alt="Lv2 c 11" src="https://github.com/user-attachments/assets/740b3470-72da-4a1b-8b05-f54cd3060ad9" />
+<img alt="Lv2 c 11" src="https://github.com/user-attachments/assets/740b3470-72da-4a1b-8b05-f54cd3060ad9" />
 
 ### Figure B12. Level 2 comparison screenshot 12
-<img width="1409" height="872" alt="Lv2 c 13" src="https://github.com/user-attachments/assets/3f04e307-726c-42c9-b4ca-5d6ab7a0e48a" />
+<img alt="Lv2 c 13" src="https://github.com/user-attachments/assets/3f04e307-726c-42c9-b4ca-5d6ab7a0e48a" />
 
 ### Figure B13. Level 2 comparison screenshot 13
-<img width="1409" height="872" alt="Lv2 c 12" src="https://github.com/user-attachments/assets/2e9057b5-2ed4-4fc8-8955-d370f1738106" />
+<img alt="Lv2 c 12" src="https://github.com/user-attachments/assets/2e9057b5-2ed4-4fc8-8955-d370f1738106" />
 
 ### Figure B14. Level 2 comparison screenshot 14
-<img width="1409" height="872" alt="Lv2 c 14" src="https://github.com/user-attachments/assets/3fa143cc-fd09-41db-8a75-d7e5c677ef93" />
+<img alt="Lv2 c 14" src="https://github.com/user-attachments/assets/3fa143cc-fd09-41db-8a75-d7e5c677ef93" />
 
 ### Figure B15. Level 2 comparison screenshot 15
-<img width="1427" height="941" alt="Lv2 c 15" src="https://github.com/user-attachments/assets/5e43fdb6-f7b7-4377-aae6-ba87636e20cd" />
+<img alt="Lv2 c 15" src="https://github.com/user-attachments/assets/5e43fdb6-f7b7-4377-aae6-ba87636e20cd" />
